@@ -52,7 +52,3 @@ for row in range(len(array_data)):
         outSheet.write(row+1,column,array_data[row][column])
 
 outWorkbook.close()
-
-
-
-print(array_data)
