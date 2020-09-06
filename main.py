@@ -2,6 +2,9 @@ import csv
 import glob
 import xlsxwriter
 
+#install XlsxWriter https://xlsxwriter.readthedocs.io/getting_started.html
+# "pip install XlsxWriter"
+
 #print(glob.glob("csv/*.csv"))
 
 #fileName = 'test.csv'
