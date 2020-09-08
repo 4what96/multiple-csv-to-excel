@@ -2,14 +2,10 @@ import csv
 import glob
 import xlsxwriter
 
-#install XlsxWriter https://xlsxwriter.readthedocs.io/getting_started.html
-# "pip install XlsxWriter"
+#install XlsxWriter: https://xlsxwriter.readthedocs.io/getting_started.html
 
-#print(glob.glob("csv/*.csv"))
 
-#fileName = 'test.csv'
 array_data = []
-#array_fileNames = ['test.csv','test2.csv']
 array_fileNames = glob.glob("csv/*.csv")
 
 
@@ -21,17 +17,12 @@ number_of_columns = len(headers)
 
 
 for fileName in array_fileNames:
-    with open(fileName, 'r') as csvfile:
-        reader = csv.reader(csvfile, delimiter = ';')
+    with open(fileName, newline='') as csvfile:
+        raw_data = list(csv.reader(csvfile, delimiter='\t'))
         temp_row = []
-        index = 0
-        for rows in reader:
-            for numberRows in range(0,number_of_columns):
-                if(index == 1):
-                    temp_row.append(rows[numberRows])
-            #print(rows)
-            index += 1
-        #print(reader)
+
+        for i in range(1, number_of_columns + 1):
+            temp_row.append(raw_data[i][1])
 
         for element in range(len(temp_row)):
             temp_row[element] = temp_row[element].replace(".",",")
@@ -43,6 +34,7 @@ outWorkbook = xlsxwriter.Workbook(workbookName)
 outSheet = outWorkbook.add_worksheet()
 
 headers.append("File Name")
+
 #write data to file
 for item in range(len(headers)):
     outSheet.write(0,item, headers[item])
