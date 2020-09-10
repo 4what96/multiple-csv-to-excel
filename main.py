@@ -1,6 +1,7 @@
 import csv
 import glob
 import xlsxwriter
+import codecs
 
 #install XlsxWriter: https://xlsxwriter.readthedocs.io/getting_started.html
 
@@ -17,7 +18,7 @@ number_of_columns = len(headers)
 
 
 for fileName in array_fileNames:
-    with open(fileName, newline='') as csvfile:
+    with codecs.open(fileName,'rU', 'utf-16') as csvfile:
         raw_data = list(csv.reader(csvfile, delimiter='\t'))
         temp_row = []
 
